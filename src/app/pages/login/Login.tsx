@@ -1,7 +1,15 @@
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  FormEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
+  const inputSenhaRef = useRef<HTMLInputElement>(null);
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
@@ -42,12 +50,16 @@ export const Login = () => {
             type="text"
             required
             value={email}
+            onKeyDown={(e) =>
+              e.key === "Enter" ? inputSenhaRef.current?.focus() : undefined
+            }
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
         <label>
           <span>Senha:</span>
           <input
+            ref={inputSenhaRef}
             type="password"
             required
             value={senha}
