@@ -1,5 +1,12 @@
 import { AppRoutes } from "./routes";
+import { UsuarioLogadoProvider } from "./shared/contexts";
 
 export const App = () => {
-  return <AppRoutes />;
+  return (
+    <>
+      <UsuarioLogadoProvider nome={"Samuel Souza"}>
+        <AppRoutes />
+      </UsuarioLogadoProvider>
+    </>
+  );
 };
