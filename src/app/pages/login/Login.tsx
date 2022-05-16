@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import { useNavigate } from "react-router-dom";
+import { LoginInput } from "./components/LoginInput";
 
 export const Login = () => {
   const inputSenhaRef = useRef<HTMLInputElement>(null);
@@ -44,28 +45,21 @@ export const Login = () => {
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <p>Qtde caractéres e-mail: {emailLength}</p>
-        <label>
-          <span>E-mail:</span>
-          <input
-            type="text"
-            required
-            value={email}
-            onKeyDown={(e) =>
-              e.key === "Enter" ? inputSenhaRef.current?.focus() : undefined
-            }
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <label>
-          <span>Senha:</span>
-          <input
-            ref={inputSenhaRef}
-            type="password"
-            required
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-          />
-        </label>
+        <LoginInput
+          label="Email: "
+          type="email"
+          value={email}
+          required={true}
+          onChange={(newValue) => setEmail(newValue)}
+          onPressEnter={() => inputSenhaRef.current?.focus()}
+        />
+        <LoginInput
+          label="Senha: "
+          type="password"
+          value={senha}
+          required={true}
+          onChange={(newValue) => setSenha(newValue)}
+        />
         <button>Entrar</button>
       </form>
       <button onClick={handleClick}>Página Inicial</button>
