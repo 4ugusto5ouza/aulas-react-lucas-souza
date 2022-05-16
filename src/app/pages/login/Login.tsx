@@ -1,13 +1,6 @@
-import {
-  FormEvent,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UsuarioLogadoContext } from "../../shared/contexts";
+import { useUsuarioLogado } from "../../shared/hooks";
 import { LoginInput } from "./components/LoginInput";
 import { LoginSubmitBtn } from "./components/LoginSubmitBtn";
 
@@ -16,7 +9,7 @@ export const Login = () => {
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
 
-  const { nome } = useContext(UsuarioLogadoContext);
+  const { nome } = useUsuarioLogado();
 
   useEffect(() => {
     if (window.confirm("Você concorda com as políticas de uso?")) {
@@ -46,7 +39,10 @@ export const Login = () => {
   return (
     <div>
       <h1>Login</h1>
-      <p>{nome}</p>
+      <p>
+        <span>Context: </span>
+        {nome}
+      </p>
       <form onSubmit={handleSubmit}>
         <p>Qtde caractéres e-mail: {emailLength}</p>
         <LoginInput

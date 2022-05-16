@@ -1,14 +1,16 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { UsuarioLogadoContext } from "../../shared/contexts";
+import { useUsuarioLogado } from "../../shared/hooks";
 
 export const Dashboard = () => {
-  const {nome} = useContext(UsuarioLogadoContext);
+  const { nome } = useUsuarioLogado();
 
   return (
     <div>
       <h1>Dashboard</h1>
-      <p>{nome}</p>
+      <p>
+        <span>Context: </span>
+        {nome}
+      </p>
       <Link to={"/entrar"}>Login</Link>
     </div>
   );
