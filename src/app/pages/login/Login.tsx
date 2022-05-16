@@ -8,9 +8,9 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginInput } from "./components/LoginInput";
+import { LoginSubmitBtn } from "./components/LoginSubmitBtn";
 
 export const Login = () => {
-  const inputSenhaRef = useRef<HTMLInputElement>(null);
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ export const Login = () => {
           value={email}
           required={true}
           onChange={(newValue) => setEmail(newValue)}
-          onPressEnter={() => inputSenhaRef.current?.focus()}
+          //onPressEnter={() => inputSenhaRef.current?.focus()}
         />
         <LoginInput
           label="Senha: "
@@ -60,7 +60,8 @@ export const Login = () => {
           required={true}
           onChange={(newValue) => setSenha(newValue)}
         />
-        <button>Entrar</button>
+        <LoginSubmitBtn type="submit">Entrar</LoginSubmitBtn>
+        <LoginSubmitBtn type="submit">Cadastrar</LoginSubmitBtn>
       </form>
       <button onClick={handleClick}>Página Inicial</button>
     </div>
