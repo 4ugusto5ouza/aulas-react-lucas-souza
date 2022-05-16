@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
@@ -16,6 +16,10 @@ export const Login = () => {
     }
   }, []);
 
+  const emailLength = useMemo(() => {
+    return email.length;
+  }, [email]);
+
   const handleClick = () => {
     navigate("pagina-inicial");
   };
@@ -30,6 +34,7 @@ export const Login = () => {
     <div>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
+        <p>Qtde caractéres e-mail: {emailLength}</p>
         <label>
           <span>E-mail:</span>
           <input
