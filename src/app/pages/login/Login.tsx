@@ -1,13 +1,25 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (window.confirm("Você concorda com as políticas de uso?")) {
+      console.log("Concordou com as políticas");
+      setEmail("");
+      setSenha("");
+    } else {
+      navigate("/pagina-inicial");
+    }
+  }, []);
+
   const handleClick = () => {
     navigate("pagina-inicial");
   };
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     console.log(email, senha);
