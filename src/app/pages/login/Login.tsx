@@ -2,8 +2,7 @@ import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogoutButton } from "../../shared/components";
 import { useUsuarioLogado } from "../../shared/hooks";
-import { LoginInput } from "./components/LoginInput";
-import { LoginSubmitBtn } from "./components/LoginSubmitBtn";
+import { LoginInput, LoginSubmitBtn } from "./components";
 
 export const Login = () => {
   const [email, setEmail] = useState("");

@@ -8,7 +8,7 @@ interface ILoginInputProps {
   onPressEnter?: () => void;
 }
 
-export const LoginInput: React.FC<ILoginInputProps> = (props) => {
+const LoginInput: React.FC<ILoginInputProps> = (props) => {
   return (
     <>
       <label>
@@ -28,3 +28,5 @@ export const LoginInput: React.FC<ILoginInputProps> = (props) => {
     </>
   );
 };
+
+export { LoginInput };
