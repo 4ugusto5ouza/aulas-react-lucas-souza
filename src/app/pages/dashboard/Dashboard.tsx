@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import { LogoutButton } from "../../shared/components";
 import { useUsuarioLogado } from "../../shared/hooks";
 
 export const Dashboard = () => {
-  const { nome } = useUsuarioLogado();
+  const { nome, logout } = useUsuarioLogado();
 
   return (
     <div>
@@ -12,6 +13,7 @@ export const Dashboard = () => {
         {nome}
       </p>
       <Link to={"/entrar"}>Login</Link>
+      <LogoutButton onClick={logout}>Logout</LogoutButton>
     </div>
   );
 };

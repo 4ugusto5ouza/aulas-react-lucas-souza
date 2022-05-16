@@ -1,5 +1,6 @@
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { LogoutButton } from "../../shared/components";
 import { useUsuarioLogado } from "../../shared/hooks";
 import { LoginInput } from "./components/LoginInput";
 import { LoginSubmitBtn } from "./components/LoginSubmitBtn";
@@ -9,7 +10,7 @@ export const Login = () => {
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
 
-  const { nome } = useUsuarioLogado();
+  const { nome, logout } = useUsuarioLogado();
 
   useEffect(() => {
     if (window.confirm("Você concorda com as políticas de uso?")) {
@@ -64,6 +65,7 @@ export const Login = () => {
         <LoginSubmitBtn type="submit">Cadastrar</LoginSubmitBtn>
       </form>
       <button onClick={handleClick}>Página Inicial</button>
+      <LogoutButton onClick={logout}>Logout</LogoutButton>
     </div>
   );
 };
