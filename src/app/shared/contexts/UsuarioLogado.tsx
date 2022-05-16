@@ -5,7 +5,7 @@ interface IUsuarioLogadoData {
   children?: ReactNode;
 }
 
-const UsuarioLogado = createContext<IUsuarioLogadoData>(
+export const UsuarioLogadoContext = createContext<IUsuarioLogadoData>(
   {} as IUsuarioLogadoData
 );
 
@@ -14,6 +14,8 @@ export const UsuarioLogadoProvider: React.FC<IUsuarioLogadoData> = ({
   children,
 }) => {
   return (
-    <UsuarioLogado.Provider value={{ nome }}>{children}</UsuarioLogado.Provider>
+    <UsuarioLogadoContext.Provider value={{ nome }}>
+      {children}
+    </UsuarioLogadoContext.Provider>
   );
 };
