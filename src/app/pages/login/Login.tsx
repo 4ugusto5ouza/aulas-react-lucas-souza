@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
@@ -9,8 +9,6 @@ export const Login = () => {
   useEffect(() => {
     if (window.confirm("Você concorda com as políticas de uso?")) {
       console.log("Concordou com as políticas");
-      setEmail("");
-      setSenha("");
     } else {
       navigate("/pagina-inicial");
     }
@@ -18,17 +16,20 @@ export const Login = () => {
 
   const emailLength = useMemo(() => {
     return email.length;
-  }, [email]);
+  }, [email.length]);
 
   const handleClick = () => {
     navigate("pagina-inicial");
   };
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log(email, senha);
-    navigate("pagina-inicial");
-  };
+  const handleSubmit = useCallback(
+    (event: FormEvent) => {
+      event.preventDefault();
+      console.log(email, senha);
+      navigate("pagina-inicial");
+    },
+    [email, senha]
+  );
 
   return (
     <div>
